@@ -20,7 +20,7 @@ class GridMapFrame(tk.Frame):
             for c in range(cols):
                 self.grid_columnconfigure(c, minsize=45, weight=1)
                 cellFrame = MapCellFrame(self, r,c,self.gameControl)
-                cellFrame['bg']= 'green'
+                cellFrame['bg'] = 'green'
                 cellFrame.grid(column=c,row=r, sticky='nsew')
         #label = ttk.Label(self, text='M')
         #label.grid(column=0, row=0, sticky='nsew', padx=2, pady=2)
@@ -92,7 +92,7 @@ class App(tk.Tk):
         oFrame['bg']= 'green'
         oFrame.grid(column=1,row=0, sticky='nsew')
 
-        sFrame = StatusFrame(center, 'the state')
+        sFrame = StatusFrame(center, 'the state', self.controller)
         sFrame['bg']= 'yellow'
         #sFrame['width']=200
         sFrame.grid(column=0,row=0, sticky='nsew')
@@ -101,7 +101,7 @@ class App(tk.Tk):
         mFrame['bg']= 'blue'
         mFrame.grid(column=1,row=0, sticky='nsew')
 
-        iFrame = InventoryFrame(center, 'inventory title')
+        iFrame = InventoryFrame(center, 'inventory title', self.controller)
         iFrame['bg']= 'purple'
         iFrame.grid(column=2,row=0, sticky='nsew')
 
@@ -110,3 +110,5 @@ class App(tk.Tk):
         dFrame.grid(column=0,row=0, sticky='nsew')
 
         self.controller.setDialogGui(dFrame)
+        self.controller.setStatusGui(sFrame)
+        self.controller.startGameControl()
